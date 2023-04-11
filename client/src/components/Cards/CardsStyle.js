@@ -16,5 +16,6 @@ flex-wrap: wrap;
 export const Contenedor = styled.div`
 display:flex;
 flex-direction: row;
+flex-wrap: wrap;
 `
 

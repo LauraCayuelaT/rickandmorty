@@ -14,6 +14,7 @@ border-radius:15px;
 export const Contenedor = styled.div`
 display:flex;
 flex-direction: row;
+flex-wrap: wrap;
 `
 
 export const Lista = styled.select`

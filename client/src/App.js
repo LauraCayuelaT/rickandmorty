@@ -25,12 +25,22 @@ function App() {
    const navigate = useNavigate();
    
   
-   const login = (userData)=>{
-      if(userData.password===PASSWORD && userData.email===EMAIL){
-         setAccess(true);
-         navigate('/home')
-      } 
-      else {alert("Credenciales incorrectas!")}
+   // const login = (userData)=>{
+   //    if(userData.password===PASSWORD && userData.email===EMAIL){
+   //       setAccess(true);
+   //       navigate('/home')
+   //    } 
+   //    else {alert("Credenciales incorrectas!")}
+   // }
+
+   function login(userData) {
+      const { email, password } = userData;
+      const URL = 'http://localhost:3001/rickandmorty/login/';
+      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+         const { access } = data;
+         setAccess(data);
+         access && navigate('/home');
+      });
    }
 
    useEffect(() => {
@@ -38,7 +48,7 @@ function App() {
    }, [access]);
 
    function onSearch(id){
-      fetch(`https://rickandmortyapi.com/api/character/${id}`)
+      fetch(`http://localhost:3001/rickandmorty/character/${id}`)
       .then((res)=>res.json())
       .then((data)=>{
          if(data.name && !characters.find(char=>char.id===data.id)) {
