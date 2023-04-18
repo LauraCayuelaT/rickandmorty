@@ -5,6 +5,12 @@ const postFav = (req,res)=>{
     res.json(myFavorites);
 }
 
+const getFav = (req,res)=>{
+    res.status(200).json(myFavorites)
+}
+
+
+
 const deleteFav =(req,res)=>{
     const { id }=req.params;
     myFavorites = myFavorites.filter(char=>char.id!==id);
@@ -14,5 +20,6 @@ const deleteFav =(req,res)=>{
 
 module.exports = {
     postFav,
-    deleteFav
+    deleteFav,
+    getFav
 }

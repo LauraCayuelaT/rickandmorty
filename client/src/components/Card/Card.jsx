@@ -4,27 +4,20 @@ import { connect } from 'react-redux';
 import { useState } from "react";
 import { useEffect } from "react";
 import { Close, Nombre, Detalle, Imagen} from "./CardStyle";
+import axios from "axios";
 
 
 function Card({ id,name,species,gender,image,key,onClose,addFav,removeFav,status,myFavorites,origin }) {
 
    
    const [isFav,setIsFav] = useState(false);
-  
 
-   useEffect(() => {
-      myFavorites.forEach((fav) => {
-         if (fav.id === id) {
-            setIsFav(true);
-         }
-      });
-   }, [myFavorites]);
 
    const handleFavorite = ()=>{
       
       if(!isFav){
          setIsFav(true);
-         addFav({id,name,species,gender,image,key,onClose,addFav,removeFav,status,myFavorites,origin});
+         addFav({id,name,species,gender,image,key,onClose,status,origin});
       }
       else {
          setIsFav(false);
@@ -32,8 +25,18 @@ function Card({ id,name,species,gender,image,key,onClose,addFav,removeFav,status
       }
    }
 
-   
 
+   useEffect(() => {
+      myFavorites.forEach((fav) => {
+         if (fav.id === id) {
+            setIsFav(true);
+         }
+      });
+
+      
+   }, [myFavorites]);
+
+   
 
    return (
       <div>
@@ -49,10 +52,10 @@ function Card({ id,name,species,gender,image,key,onClose,addFav,removeFav,status
          <Link to={`/detail/${id}`}>
          <Nombre>{name}</Nombre>
          </Link>
-         <Detalle>{status}</Detalle>
-         <Detalle>{species}</Detalle>
-         <Detalle>{gender}</Detalle> 
-         <Detalle>{origin}</Detalle>
+         <Detalle>Status: {status}</Detalle>
+         <Detalle>Sepcies: {species}</Detalle>
+         <Detalle>Genter: {gender}</Detalle> 
+         <Detalle>Origin: {origin}</Detalle>
          <Imagen src={image} alt='' /> 
       </div>
    );

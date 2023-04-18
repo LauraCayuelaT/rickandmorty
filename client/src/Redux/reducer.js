@@ -1,4 +1,4 @@
-import { ADD_FAV, REMOVE_FAV, FILTER, ORDER  } from "./actions";
+import { ADD_FAV, REMOVE_FAV, FILTER, ORDER, GET_FAVORITES  } from "./actions";
 import { useState } from "react";
 
 const initialState = {
@@ -17,6 +17,7 @@ const rootReducer = (state=initialState,action)=>{
         //     })
 
         case ADD_FAV:
+            
              return { ...state, myFavorites: action.payload, allCharacters: action.payload };
 
         // case REMOVE_FAV:
@@ -25,7 +26,7 @@ const rootReducer = (state=initialState,action)=>{
         //     })
 
         case REMOVE_FAV:
-            return { ...state, myFavorites: action.payload };
+            return { ...state, myFavorites: action.payload, allCharacters: action.payload };
         case FILTER:
             
             const allCharFiltered = state.allCharacters.filter((char)=>char.gender===action.payload)
@@ -43,6 +44,8 @@ const rootReducer = (state=initialState,action)=>{
                     : state.allCharacters.sort((a,b)=> b.id - a.id)
                     
                 }
+        case GET_FAVORITES:
+            return {...state, myFavorites: action.payload}
             
             
 

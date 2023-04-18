@@ -4,6 +4,8 @@ export const ADD_FAV = "ADD_FAV"
 export const REMOVE_FAV = "REMOVE_FAV"
 export const FILTER="FILTER"
 export const ORDER="ORDER"
+export const GET_FAVORITES="GET_FAVORITES"
+
 
 // export const addFav = (personaje)=>{
 //     return ({type:ADD_FAV, payload:personaje})
@@ -36,9 +38,20 @@ export const ORDER="ORDER"
 
    }
 
-  
-  
+
       };
+
+   export const getFavorites = ()=>{
+      return async function  (dispatch) {
+         try{
+         const response = await axios.get('http://localhost:3001/rickandmorty/fav')
+         dispatch({type:GET_FAVORITES, payload: response.data})}
+         catch(err){throw Error("No se logró despachar la acción")}
+      }
+      
+   }
+
+    
    
 
 

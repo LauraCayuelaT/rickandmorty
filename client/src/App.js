@@ -96,6 +96,7 @@ function App() {
 
    function onClose(id) {
       setCharacters(characters.filter(char=>char.id!==id))
+      
    }
 
    const { pathname } = useLocation();

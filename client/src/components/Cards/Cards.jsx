@@ -1,7 +1,16 @@
 import Card from '../Card/Card';
 import { ContenedorCarta, Contenedor } from './CardsStyle';
+import { useDispatch } from 'react-redux';
+import { getFavorites } from '../../Redux/actions';
+import { useEffect } from 'react';
 
 export default function Cards(props) {
+   const dispatch = useDispatch();
+
+   useEffect(()=>{
+      dispatch(getFavorites())
+  },[])
+
    const { characters } = props;
    
    return ( <Contenedor>
