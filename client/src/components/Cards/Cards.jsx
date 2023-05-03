@@ -8,6 +8,7 @@ export default function Cards(props) {
    const dispatch = useDispatch();
 
    useEffect(()=>{
+      
       dispatch(getFavorites())
   },[])
 

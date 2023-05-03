@@ -18,7 +18,7 @@ const rootReducer = (state=initialState,action)=>{
 
         case ADD_FAV:
             
-             return { ...state, myFavorites: action.payload, allCharacters: action.payload };
+             return { ...state, myFavorites: [...state.myFavorites,action.payload], allCharacters: [...state.myFavorites,action.payload] };
 
         // case REMOVE_FAV:
         //     return({...state,

@@ -1,16 +1,28 @@
 import { Link } from "react-router-dom";
 import { addFav,removeFav } from "../../Redux/actions";
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { useState } from "react";
 import { useEffect } from "react";
 import { Close, Nombre, Detalle, Imagen} from "./CardStyle";
-import axios from "axios";
+
+
 
 
 function Card({ id,name,species,gender,image,key,onClose,addFav,removeFav,status,myFavorites,origin }) {
-
+   
    
    const [isFav,setIsFav] = useState(false);
+
+   useEffect(() => {
+      
+      myFavorites.forEach((fav) => {
+         if (fav.id ==id) {
+            setIsFav(true);
+         }
+      });
+
+      
+   }, [myFavorites]);
 
 
    const handleFavorite = ()=>{
@@ -26,15 +38,6 @@ function Card({ id,name,species,gender,image,key,onClose,addFav,removeFav,status
    }
 
 
-   useEffect(() => {
-      myFavorites.forEach((fav) => {
-         if (fav.id === id) {
-            setIsFav(true);
-         }
-      });
-
-      
-   }, [myFavorites]);
 
    
 

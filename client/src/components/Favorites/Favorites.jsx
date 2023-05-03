@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Card from "../Card/Card";
-import { orderCards, filterCards, getFavorites } from "../../Redux/actions";
+import { orderCards, filterCards} from "../../Redux/actions";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { ContenedorCarta, Contenedor, Lista} from "./FavoritesStyle";
@@ -50,7 +50,7 @@ const Favorites = ({ myFavorites })=>{
                   status={char.status}
                   species={char.species}
                   gender={char.gender}
-                  origin={char.origin.name}
+                  origin={char.origin}
                   image={char.image}
                   onClose={char.onClose}
                   />
